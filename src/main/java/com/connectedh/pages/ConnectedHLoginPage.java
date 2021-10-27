@@ -1,12 +1,18 @@
 package com.connectedh.pages;
 
+import java.time.Duration;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 
@@ -20,27 +26,27 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 
 	private By enterAlternateMobileNumber = By.xpath("//android.view.ViewGroup[2]/android.widget.EditText");
 
-	private By name = By.id("//android.view.ViewGroup[3]/android.widget.EditText");
+	private By name = By.xpath("//android.view.ViewGroup[3]");
 
 	private By clickGender = By.xpath("//android.widget.TextView[@text = 'Male']");
 
 	private By selectGender = By.xpath("//android.widget.CheckedTextView[@text = 'Female']");
 
-	private By clickDate = By.xpath("//android.widget.ScrollView//android.view.ViewGroup[2]");
+	private By clickDate = By.xpath("//android.view.ViewGroup[5]");
 
 	
 	private By ok = By.xpath("//android.widget.Button[@text = 'OK']");
 
-	private By collDateClick = By.xpath("//android.view.ViewGroup[3]/android.widget.TextView");
+	private By collDateClick = By.xpath("//android.view.ViewGroup[6]");
 
 	private By clearMapAddress = By.xpath("//android.view.ViewGroup[2]/android.widget.TextView");
 
 
-	private By toggle = By.xpath("android:id/toggle_mode");
+	private By toggle = By.id("android:id/toggle_mode");
 	
-	private By hour = By.xpath("android:id/input_hour");
+	private By hour = By.id("android:id/input_hour");
 	
-	private By minute = By.xpath("android:id/input_minute");
+	private By minute = By.id("android:id/input_minute");
 	
 	
 	
@@ -64,7 +70,7 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 	
 	private By comments = By.xpath("//android.widget.EditText[@text = 'Add your comment']");
 	
-	private By errorText = By.xpath("android:id/title_template");
+	private By errorText = By.id("android:id/title_template");
 	
 	private By errorTestMessage = By.xpath("//android.widget.TextView[@text = 'Atleast one test is required']");
 	//android.widget.TextView[@text = 'Done']
@@ -110,6 +116,8 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 	public void clickOnNewBooking() {
 
 		logger.info("Starting of clickOnNewBooking method");
+		
+		sleep(3000);
 
 		driver.findElement(newBooking).click();
 
@@ -121,9 +129,17 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 
 		logger.info("Starting of clickOnPhoneNumber method");
 
-		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		driver.findElement(enterMobileNumber).sendKeys(pPhone);
+		
+		sleep(3000);
+		
 		driver.findElement(enterAlternateMobileNumber).sendKeys(aPhone);
 
 		logger.info("Ending of clickOnPhoneNumber method");
@@ -133,7 +149,12 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 	public void clickOnName(String pName) {
 
 		logger.info("Starting of clickOnName method");
-
+		
+		sleep(3000);
+		
+		driver.findElement(name).click();
+		
+		sleep(2000);
 
 		driver.findElement(name).sendKeys(pName);
 		
@@ -151,6 +172,8 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 		sleep(3000);
 
 		driver.findElement(clickGender).click();
+		
+		sleep(3000);
 
 		driver.findElement(selectGender).click();
 
@@ -163,11 +186,17 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 
 		logger.info("Starting of clickOnDOB method");
 
-
+		sleep(3000);
+		
 		driver.findElement(clickDate).click();
 		
+		sleep(3000);
+		
 		WebElement date = driver.findElement(By.xpath("//android.view.View[@content-desc = '"+dateValue+"']"));
+		
 		date.click();
+		
+		sleep(2000);
 		
 		driver.findElement(ok).click();
 		
@@ -186,25 +215,36 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 
 		driver.findElement(collDateClick).click();
 		
-		WebElement colldate = driver.findElement(By.xpath("//android.view.View[@content-desc = '"+collDate+"']"));
+		sleep(2000);
+		
+		WebElement colldate = driver.findElement(By.xpath("//android.view.View['"+collDate+"']"));
+		
 		colldate.click();
+		
+		sleep(2000);
 		
 		//private By collDateSelect = By.xpath("//android.view.View[@content-desc = '26 October 2021']");
 
 		driver.findElement(ok).click();
 		
+		sleep(2000);
+		
 		driver.findElement(toggle).click();
+		
+		sleep(2000);
 		
 		driver.findElement(hour).sendKeys(hourValue);
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			
 			e.printStackTrace();
 		}
 		
 		driver.findElement(minute).sendKeys(minValue);
+		
+		sleep(2000);
 		
 		driver.findElement(ok).click();
 		
@@ -215,9 +255,27 @@ public class ConnectedHLoginPage extends BaseConnectedHAutomationPage {
 
 	}
 
-	public void clickOnAddress(String pAddress) {
+	public void clickOnAddress(String pAddress) throws InterruptedException {
 
 		logger.info("Starting of clickOnAddress method");
+		
+		Thread.sleep(3000);
+
+		Dimension size = driver.manage().window().getSize();
+
+		int startX = size.width / 2;
+
+		int endX = startX;
+
+		int startY = (int) (size.height * 0.7);
+
+		int endY = (int) (size.height * 0.2);
+
+		TouchAction t = new TouchAction(driver);
+
+		t.press(PointOption.point(startX, startY)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+				.moveTo(PointOption.point(endX, endY)).release().perform();
+
 
 		driver.findElement(address).sendKeys(pAddress);
 		

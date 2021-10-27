@@ -1,6 +1,7 @@
 package com.connectedh.test;
 
 import org.apache.log4j.Logger;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -65,7 +66,7 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnNewBookingTest method");
 	}
 	
-	@Test(priority = 2, description = "Launch Application")
+	@Test(priority = 3, description = "Launch Application")
 	public void clickOnNewPhoneNumberTest() {
 		
 		logger.info("Starting of clickOnNewPhoneNumberTest method");
@@ -77,18 +78,18 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnNewPhoneNumberTest method");
 	}
 
-	@Test(priority = 2, description = "Launch Application")
+	@Test(priority = 4, description = "Launch Application")
 	public void clickOnNameTest() {
 		
 		logger.info("Starting of clickOnNameTest method");
 		
 		loginPage.clickOnName(
-				testDataProp.getProperty("pName"));
+				testDataProp.getProperty("pname"));
 		
 		logger.info("Ending of clickOnNameTest method");
 	}
 	
-	@Test(priority = 3, description = "Launch Application")
+	@Test(priority = 5, description = "Launch Application")
 	public void clickOnGenderTest() {
 		
 		logger.info("Starting of clickOnGenderTest method");
@@ -98,7 +99,7 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnGenderTest method");
 	}
 	
-	@Test(priority = 4, description = "Launch Application")
+	@Test(priority = 6, description = "Launch Application")
 	public void clickOnDOBTest() {
 		
 		logger.info("Starting of clickOnDOBTest method");
@@ -108,7 +109,7 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnDOBTest method");
 	}
 	
-	@Test(priority =5, description = "Launch Application")
+	@Test(priority =7, description = "Launch Application")
 	public void collDateAndTimeTest() {
 		
 		logger.info("Starting of collDateAndTimeTest method");
@@ -121,8 +122,8 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of collDateAndTimeTest method");
 	}
 	
-	@Test(priority = 6, description = "Launch Application")
-	public void clickOnAddressTest() {
+	@Test(priority = 8, description = "Launch Application")
+	public void clickOnAddressTest() throws InterruptedException {
 		
 		logger.info("Starting of clickOnAddressTest method");
 		
@@ -131,8 +132,8 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnAddressTest method");
 	}
 	
-	@Test(priority = 7, description = "Launch Application")
-	public void clickOnMapAddressTest() {
+	@Test(priority = 9, description = "Launch Application")
+	public void clickOnMapAddressTest() throws InterruptedException {
 		
 		logger.info("Starting of clickOnMapAddressTest method");
 		
@@ -141,7 +142,7 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnMapAddressTest method");
 	}
 	
-	@Test(priority = 8, description = "Launch Application")
+	@Test(priority = 10, description = "Launch Application")
 	public void clickOnAttachmentTest() {
 		
 		logger.info("Starting of clickOnAttachmentTest method");
@@ -151,8 +152,8 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnAttachmentTest method");
 	}
 	
-	@Test(priority = 9, description = "Launch Application")
-	public void clickOnCommentsTest() {
+	@Test(priority = 11, description = "Launch Application")
+	public void clickOnCommentsTest() throws InterruptedException {
 		
 		logger.info("Starting of clickOnCommentsTest method");
 		
@@ -161,7 +162,7 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		logger.info("Ending of clickOnCommentsTest method");
 	}
 	
-	@Test(priority = 10, description = "Launch Application")
+	@Test(priority = 12, description = "Launch Application")
 	public void clickOnDoneTest() {
 		
 		logger.info("Starting of clickOnDoneTest method");
@@ -170,4 +171,6 @@ public class ConnectedHLoginTest extends BaseConnectedHAutomationTest {
 		
 		logger.info("Ending of clickOnDoneTest method");
 	}
+	
+
 }
